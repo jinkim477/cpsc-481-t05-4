@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Saved Recipes · Baking for a Cause</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="phone">
+  <header class="screen-header screen-header--secondary">
+    <div class="status-bar" aria-hidden="true">
+      <span>9:41</span>
+      <svg class="status-bar__icons" viewBox="0 0 70 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><path d="M28.5 2.4a9.5 9.5 0 0 1 12 0l-1.3 1.5a7.5 7.5 0 0 0-9.4 0zM31 5.6a6 6 0 0 1 7 0l-1.3 1.5a4 4 0 0 0-4.4 0zM34.7 8.4a2 2 0 0 1 1.4.6L34.7 10.6 33.3 9a2 2 0 0 1 1.4-.6z"/><rect x="46.5" y="0.5" width="21" height="11" rx="3.2" fill="none" stroke="currentColor" opacity=".4"/><rect x="48" y="2" width="18" height="8" rx="2"/><path d="M69 4v4c.7-.3 1.2-1 1.2-2S69.700 4.300 69 4z" opacity=".4"/></svg>
+    </div>
+    <div class="club-identity">
+      <img class="brand__logo" src="assets/photos/bfc-logo.png" alt="">
+      <span class="brand__name">BfC</span>
+      <span class="brand__divider"></span>
+      <span class="brand__caption">Baking for a Cause<br>University of Calgary</span>
+    </div>
+    <div class="focused-nav">
+      <a class="exit-action" href="recipes.html"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>Close</a>
+    </div>
+  </header>
+
+  <main class="screen-body">
+    <h1 class="page-title">Saved Recipes</h1>
+
+    <label class="search">
+      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34" /><circle cx="11" cy="11" r="8" /></svg>
+      <input type="search" placeholder="Search saved recipes" aria-label="Search saved recipes">
+    </label>
+
+    <div class="filters">
+      <div class="filter">
+        <span class="filter__label">Difficulty</span>
+        <label class="select"><span class="select__value">Any</span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 5H3" /><path d="M12 19H3" /><path d="M14 3v4" /><path d="M16 17v4" /><path d="M21 12h-9" /><path d="M21 19h-5" /><path d="M21 5h-7" /><path d="M8 10v4" /><path d="M8 12H3" /></svg>
+          <select aria-label="Difficulty"><option>Any</option><option>Beginner</option><option>Intermediate</option><option>Advanced</option></select>
+        </label>
+      </div>
+      <div class="filter">
+        <span class="filter__label">Time</span>
+        <label class="select"><span class="select__value">Any</span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 5H3" /><path d="M12 19H3" /><path d="M14 3v4" /><path d="M16 17v4" /><path d="M21 12h-9" /><path d="M21 19h-5" /><path d="M21 5h-7" /><path d="M8 10v4" /><path d="M8 12H3" /></svg>
+          <select aria-label="Time"><option>Any</option><option>Under 30 min</option><option>30–60 min</option><option>Over 60 min</option></select>
+        </label>
+      </div>
+      <div class="filter">
+        <span class="filter__label">Dish type</span>
+        <label class="select"><span class="select__value">Any</span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 5H3" /><path d="M12 19H3" /><path d="M14 3v4" /><path d="M16 17v4" /><path d="M21 12h-9" /><path d="M21 19h-5" /><path d="M21 5h-7" /><path d="M8 10v4" /><path d="M8 12H3" /></svg>
+          <select aria-label="Dish type"><option>Any</option><option>Bread</option><option>Dessert</option><option>Main</option><option>Snack</option></select>
+        </label>
+      </div>
+    </div>
+
+    <p class="empty-state">No saved recipes. Keep browsing!</p>
+  </main>
+</div>
+<script src="js/app.js"></script>
+<script src="js/forms.js"></script>
+<script src="js/forums.js"></script>
+<script src="js/membership.js"></script>
+</body>
+</html>
+
