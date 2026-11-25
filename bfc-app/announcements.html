@@ -32,19 +32,27 @@
       <p class="eyebrow">A BAKING CLUB LENDING A HELPING HAND TO THE COMMUNITY.</p>
       <h1 class="page-title">Announcements</h1>
       <p class="lede">View club announcements, posts, upcoming events, and updates below.</p>
-      <a class="btn btn--between" href="registration.html">Not a Member yet? Sign Up Now! <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></a>
+      <a class="btn btn--between" href="membership.html?from=announcements">Not a Member yet? Sign Up Now! <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></a>
     </section>
 
-    <label class="search">
-      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34" /><circle cx="11" cy="11" r="8" /></svg>
-      <input type="search" placeholder="Search for events" data-filter-input="posts" aria-label="Search for events">
-      <span class="search__filter"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 5H3" /><path d="M12 19H3" /><path d="M14 3v4" /><path d="M16 17v4" /><path d="M21 12h-9" /><path d="M21 19h-5" /><path d="M21 5h-7" /><path d="M8 10v4" /><path d="M8 12H3" /></svg></span>
-    </label>
+    <div class="dropdown search-wrap" id="type-filter">
+      <label class="search">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m21 21-4.34-4.34" /><circle cx="11" cy="11" r="8" /></svg>
+        <input type="search" placeholder="Search for events" data-filter-input="posts" aria-label="Search for events">
+        <button type="button" class="search__filter" id="type-filter-button" aria-haspopup="listbox" aria-expanded="false" aria-label="Filter posts"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 5H3" /><path d="M12 19H3" /><path d="M14 3v4" /><path d="M16 17v4" /><path d="M21 12h-9" /><path d="M21 19h-5" /><path d="M21 5h-7" /><path d="M8 10v4" /><path d="M8 12H3" /></svg></button>
+      </label>
+      <input type="hidden" data-filter-key="type" value="">
+      <div class="dropdown__list dropdown__list--end" role="listbox" aria-label="Post type" hidden>
+        <button type="button" class="dropdown__option" role="option" aria-selected="false" data-value="pinned">Pinned</button>
+        <button type="button" class="dropdown__option" role="option" aria-selected="false" data-value="event">Event</button>
+        <button type="button" class="dropdown__option" role="option" aria-selected="false" data-value="update">Update</button>
+      </div>
+    </div>
 
     <div class="stack stack--12" id="posts">
       <div class="section-heading" aria-label="Pinned post"><svg class="icon icon--filled" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17v5" /><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z" /></svg></div>
 
-      <article class="card post" data-filter-item>
+      <article class="card post" data-filter-item data-type="pinned event">
         <div class="post__media">
           <img src="assets/photos/announcement-holiday-market.png" alt="Student bakers handing out treats at a holiday market">
           <div class="post__badges"><span class="badge">PINNED</span><span class="badge">EVENT</span></div>
@@ -59,14 +67,15 @@
           <div class="post__actions">
             <div class="post__reactions">
               <button class="icon-btn" type="button" aria-label="Like" aria-pressed="false" data-like><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" /></svg></button>
-              <button class="icon-btn" type="button" aria-label="Comments"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" /></svg></button>
+              <button class="icon-btn" type="button" aria-label="Comments" data-comment><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" /></svg></button>
             </div>
-            <a class="btn btn--apply" href="apply-hiring.html">Apply</a>
+            <a class="btn btn--apply" href="apply-hiring.html?from=announcements" data-signup="holiday-hiring" data-done-label="Applied">Apply</a>
           </div>
+          <p class="dev-note" hidden>Under development!</p>
         </div>
       </article>
 
-      <article class="card post" data-filter-item>
+      <article class="card post" data-filter-item data-type="event">
         <div class="post__media">
           <img src="assets/photos/announcement-cinnamon-roll.png" alt="" onerror="this.remove()">
           <div class="post__badges"><span class="badge">EVENT</span></div>
@@ -81,10 +90,11 @@
           <div class="post__actions">
             <div class="post__reactions">
               <button class="icon-btn" type="button" aria-label="Like" aria-pressed="false" data-like><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" /></svg></button>
-              <button class="icon-btn" type="button" aria-label="Comments"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" /></svg></button>
+              <button class="icon-btn" type="button" aria-label="Comments" data-comment><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" /></svg></button>
             </div>
-            <a class="btn btn--apply" href="event-registration.html">Register</a>
+            <a class="btn btn--apply" href="event-registration.html?from=announcements" data-signup="cinnamon-social" data-done-label="Registered">Register</a>
           </div>
+          <p class="dev-note" hidden>Under development!</p>
         </div>
       </article>
       <p class="empty-state" data-filter-empty hidden>No announcements match your search.</p>
