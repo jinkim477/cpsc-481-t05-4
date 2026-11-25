@@ -96,40 +96,37 @@
     view.innerHTML = `<h1 class="page-title page-title--sm">${esc(d.title)}</h1>` + renderRecipe(d, false);
   }
 
-  /* ---- Recipes list: show the shared recipe at the top ---------------------------------- */
-  const list = $('#recipes');
-  const shared = list && store.get();
-  if (shared) {
+  /* ---- Recipe card for the shared recipe (Recipes list + Saved Recipes) -------------------- */
+  function sharedCard() {
+    const shared = store.get();
+    if (!shared) return null;
     const hrs = /(\d+(?:\.\d+)?)\s*h/i.exec(shared.time || '');
     const mins = /(\d+)\s*m/i.exec(shared.time || '');
     const minutes = (hrs ? parseFloat(hrs[1]) * 60 : 0) + (mins ? parseInt(mins[1], 10) : 0) || parseInt(shared.time, 10) || 0;
     const dish = (shared.dish[0] || '').toLowerCase();
     const dishKey = dish === 'bread' ? 'bread' : dish ? 'dessert' : '';
-    const chips = [shared.difficulty, shared.time].concat(shared.dish, shared.diet).filter(Boolean);
-    const card = document.createElement('article');
-    card.className = 'recipe-card';
-    card.setAttribute('data-filter-item', '');
-    card.dataset.difficulty = shared.difficulty.toLowerCase();
-    card.dataset.minutes = String(minutes);
-    card.dataset.dish = dishKey;
-    card.innerHTML = `
-      <div class="recipe-card__photo"><img src="${esc(coverOf(shared))}" alt=""></div>
-      <div class="recipe-card__body">
-        <div class="recipe-card__head">
-          <div class="recipe-card__title-block"><h2 class="recipe-card__title">${esc(shared.title)}</h2><div class="tags">${chips.map((t) => `<span class="tag">${esc(t)}</span>`).join('')}</div></div>
-          <span class="rating">${ICON('heart')}<span data-like-count>0</span></span>
-        </div>
-        <p class="recipe-card__text">${esc(shared.desc.length > 140 ? shared.desc.slice(0, 137).trimEnd() + '…' : shared.desc)}</p>
-        <div class="recipe-card__actions">
-          <a class="btn" href="recipe-shared.html">View recipe ${ICON('arrow-right')}</a>
-          <div class="recipe-card__reactions">
-            <button class="icon-btn" type="button" aria-label="Like" aria-pressed="false" data-like>${ICON('heart')}</button>
-            <button class="icon-btn icon-btn--sm" type="button" aria-label="Save recipe" aria-pressed="false" data-save>${ICON('bookmark')}</button>
-          </div>
-        </div>
-      </div>`;
+    return window.BFC.recipeCard({
+      id: 'shared',
+      title: shared.title,
+      tags: [shared.difficulty, shared.time].concat(shared.dish, shared.diet).filter(Boolean),
+      text: shared.desc.length > 140 ? shared.desc.slice(0, 137).trimEnd() + '…' : shared.desc,
+      likes: 0,
+      photo: coverOf(shared),
+      href: 'recipe-shared.html',
+      difficulty: shared.difficulty.toLowerCase(),
+      minutes,
+      dish: dishKey,
+      saved: window.BFC.saved.has('shared'),
+    });
+  }
+  window.BFC.sharedCard = sharedCard;
+
+  /* ---- Recipes list: show the shared recipe at the top ---------------------------------- */
+  const list = $('#recipes');
+  const sharedEl = list && sharedCard();
+  if (sharedEl) {
     const pills = $('.pill-row', list);
-    if (pills) pills.after(card); else list.prepend(card);
+    if (pills) pills.after(sharedEl); else list.prepend(sharedEl);
   }
 
   /* ---- Share Recipe flow ------------------------------------------------------------------ */

@@ -9,7 +9,7 @@ css/styles.css        the single stylesheet; design tokens are the CSS variables
 js/app.js             menus, notifications, likes/saves, search + filters
 js/forms.js           Share Recipe flow, recipe preview and "view shared recipe"
 js/forums.js          Ask a Question, discussion answers, delete/undo
-js/membership.js      login message, registration status, membership + event flows
+js/membership.js      login message, registration status, membership, event + job-application flows
 assets/fonts          Lora and Inter, self-hosted (no network needed)
 assets/photos         photos exported from Figma
 ```
