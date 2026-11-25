@@ -137,6 +137,7 @@
     $('#s-email').textContent = email;
     const inline = $('#s-email-inline'); if (inline) inline.textContent = email;
     if ($('#s-diet')) $('#s-diet').textContent = diet || 'None provided';
+    if (flow !== 'membership' && window.BFC && window.BFC.signups) window.BFC.signups.add(form.dataset.signup || flow);
     if (flow === 'apply') {
       $('#s-avail').textContent = val('#f-avail');
       $('#s-exp').textContent = val('#f-exp') || 'None provided';
@@ -155,5 +156,5 @@
     finish();
   });
   const back = $('#btn-back');
-  if (back) back.addEventListener('click', () => { if (step === 1) location.href = 'registration.html'; else goto(step - 1); });
+  if (back) back.addEventListener('click', () => { if (step === 1) { const exit = $('.exit-action'); location.href = exit ? exit.href : 'registration.html'; } else goto(step - 1); });
 })();
