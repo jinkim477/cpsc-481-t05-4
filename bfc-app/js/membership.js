@@ -30,7 +30,7 @@
   }
 
   /* ---- Shared step form (membership + event registration) ------------------------------------- */
-  const form = $('#member-form') || $('#event-form');
+  const form = $('#member-form') || $('#event-form') || $('#apply-form');
   if (!form) return;
   const flow = form.dataset.flow;
   const body = $('.screen-body', form);
@@ -47,7 +47,10 @@
 
   /* Prefill from an existing membership (event registration) */
   const saved = store.get();
-  if (flow === 'event' && saved) { $('#f-name').value = saved.name; $('#f-email').value = saved.email; if (saved.diet) $('#f-diet').value = saved.diet; }
+  if (flow !== 'membership' && saved) {
+    $('#f-name').value = saved.name; $('#f-email').value = saved.email;
+    if (flow === 'event' && saved.diet) $('#f-diet').value = saved.diet;
+  }
 
   form.addEventListener('input', (e) => {
     mark(e.target, false);
@@ -82,6 +85,7 @@
       const bad = [];
       if (!name.value.trim()) bad.push(name);
       if (!email.value.trim()) bad.push(email);
+      if (flow === 'apply' && !$('#f-avail').value.trim()) bad.push($('#f-avail'));
       bad.forEach((el) => mark(el, true));
       if (bad.length) { showErr(); bad[0].focus(); return false; }
       if (!/^[^\s@]+@([a-z0-9-]+\.)*ucalgary\.ca$/i.test(email.value.trim())) {
@@ -123,7 +127,7 @@
   }
 
   function finish() {
-    const name = val('#f-name'), email = val('#f-email'), diet = val('#f-diet');
+    const name = val('#f-name'), email = val('#f-email'), diet = $('#f-diet') ? val('#f-diet') : '';
     if (flow === 'membership') {
       store.set({ name, email, diet });
       $('#s-pay').textContent = method === 'apple' ? 'Apple Pay' : 'Card ending in ' + num.value.replace(/\s/g, '').slice(-4);
@@ -132,7 +136,11 @@
     $('#s-name').textContent = name;
     $('#s-email').textContent = email;
     const inline = $('#s-email-inline'); if (inline) inline.textContent = email;
-    $('#s-diet').textContent = diet || 'None provided';
+    if ($('#s-diet')) $('#s-diet').textContent = diet || 'None provided';
+    if (flow === 'apply') {
+      $('#s-avail').textContent = val('#f-avail');
+      $('#s-exp').textContent = val('#f-exp') || 'None provided';
+    }
     $('.flow-intro', form).hidden = true;
     errNote.hidden = true;
     panels.forEach((p) => { p.hidden = p.dataset.step !== 'done'; });
