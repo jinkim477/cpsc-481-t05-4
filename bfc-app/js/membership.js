@@ -4,11 +4,10 @@
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
-  const KEY = 'bfc.member';
-  const memory = {};
+  const BFC = window.BFC;
   const store = {
-    get() { try { const v = localStorage.getItem(KEY); if (v) return JSON.parse(v); } catch (e) { /* ignore */ } return memory.m || null; },
-    set(m) { memory.m = m; try { localStorage.setItem(KEY, JSON.stringify(m)); } catch (e) { /* ignore */ } },
+    get() { return BFC.member(); },
+    set(m) { BFC.db.set('bfc.member', m); },
   };
   const firstName = (n) => (n || '').trim().split(/\s+/)[0] || '';
 
@@ -29,6 +28,46 @@
     }
   }
 
+  /* ---- Once someone has joined: hide sign-up prompts and fill in their profile -------------- */
+  const member = store.get();
+  if (member) {
+    $$('.page-intro a[href^="membership.html"]').forEach((a) => a.remove());
+    const profile = $('.profile-card');
+    if (profile) {
+      const initials = (member.name || '').trim().split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0].toUpperCase()).join('');
+      const avatar = $('.profile-card__avatar', profile);
+      avatar.textContent = initials || '?';
+      avatar.classList.add('profile-card__avatar--initials');
+      avatar.setAttribute('aria-label', 'Profile picture: ' + member.name);
+      $('.profile-card__value', profile).textContent = member.name;
+      const role = $('.role-card');
+      $('.role-card__name', role).textContent = 'Club member';
+      $('.role-card__text', role).textContent = 'Thanks for baking for a cause! Your membership is active.';
+      $$('a[href^="membership.html"]', role).forEach((a) => a.remove());
+    }
+  }
+
+  /* ---- Profile: what this visitor has saved, shared and signed up for ------------------------- */
+  const activity = $('#activity');
+  if (activity) {
+    const ICON = BFC.icon, esc = BFC.esc;
+    const signups = BFC.signups.all();
+    const row = (icon, label, value, href) => `<a class="activity-row" href="${href}"><span class="activity-row__icon">${ICON(icon)}</span><span class="activity-row__label">${label}</span><span class="activity-row__value">${value}</span>${ICON('arrow-right')}</a>`;
+    const savedCount = BFC.saved.ids().filter((id) => BFC.recipeData(id)).length;
+    const events = Object.keys(signups).filter((id) => BFC.events[id]).map((id) => {
+      const ev = BFC.events[id];
+      return `<li class="activity-item"><span class="activity-row__icon">${ICON(ev.kind === 'event' ? 'calendar' : 'briefcase')}</span><span><strong>${esc(ev.title)}</strong><br>${ev.kind === 'event' ? 'Registered' : 'Applied'} · ${esc(ev.when)}</span></li>`;
+    }).join('');
+    activity.innerHTML = `<p class="field-label">Your activity</p>
+      <div class="activity-rows">
+        ${row('bookmark', 'Saved recipes', savedCount, 'saved-recipes.html')}
+        ${row('book', 'Recipes shared', BFC.recipes.all().length, 'recipes.html')}
+        ${row('message-circle', 'Questions asked', BFC.db.get('bfc.questions', []).length, 'forums.html')}
+      </div>
+      ${events ? `<p class="field-label">Events &amp; applications</p><ul class="activity-list">${events}</ul>` : ''}
+      ${BFC.isGuest() ? `<p class="note note--guest"><span>You’re browsing as a guest, so all of this is stored on this device only. <a href="membership.html?from=profile">Sign up or log in</a> to keep it.</span></p>` : ''}`;
+  }
+
   /* ---- Shared step form (membership + event registration) ------------------------------------- */
   const form = $('#member-form') || $('#event-form') || $('#apply-form');
   if (!form) return;
@@ -40,6 +79,20 @@
   const val = (id) => $(id).value.trim();
   let step = 1;
   let method = '';
+  /* Membership always has a payment step; event registration does too for non-members (CA$5.00). */
+  const paid = flow === 'membership' || (flow === 'event' && !member);
+  const FEE = flow === 'membership' ? 'CA$15.00' : 'CA$5.00';
+
+  /* Already registered / applied: show that instead of letting the form be submitted twice. */
+  const signupId = form.dataset.signup;
+  if (signupId && BFC.signups.has(signupId)) {
+    const note = $('#already-note');
+    if (note) note.hidden = false;
+    $$('input, textarea, button[type=submit]', form).forEach((el) => { el.disabled = true; });
+  }
+  /* Guests: what they submit is stored on this device. */
+  const guestNote = $('#done-guest-note');
+  if (guestNote) guestNote.hidden = !BFC.isGuest();
 
   const mark = (el, bad) => { (el.closest('.input') || el).classList.toggle('is-invalid', bad); };
   const showErr = (msg) => { errText.textContent = msg || 'Please fill in all required fields before continuing.'; errNote.hidden = false; };
@@ -115,12 +168,13 @@
   function goto(n) {
     step = n;
     panels.forEach((p) => { p.hidden = p.dataset.step !== String(n); });
-    if (flow === 'membership') {
-      $('#step-label').textContent = n === 1 ? 'Step 1 of 2 · Member details' : 'Step 2 of 2 · Payment';
+    if (paid) {
+      const details = flow === 'membership' ? 'Member details' : 'Registration details';
+      $('#step-label').textContent = n === 1 ? `Step 1 of 2 · ${details}` : 'Step 2 of 2 · Payment';
       $('#progress-bar').style.width = n === 1 ? '51.75%' : '100%';
       $('#progress-bar').parentElement.setAttribute('aria-valuenow', String(n));
       $('#nav-next').textContent = n === 1 ? 'Next: Payment' : 'Your card is only charged once you pay.';
-      $('#btn-next span').textContent = n === 1 ? 'Continue' : 'Pay CA$15.00';
+      $('#btn-next span').textContent = n === 1 ? 'Continue' : 'Pay ' + FEE;
     }
     clearErr();
     body.scrollTop = 0;
@@ -129,15 +183,22 @@
   function finish() {
     const name = val('#f-name'), email = val('#f-email'), diet = $('#f-diet') ? val('#f-diet') : '';
     if (flow === 'membership') {
-      store.set({ name, email, diet });
-      $('#s-pay').textContent = method === 'apple' ? 'Apple Pay' : 'Card ending in ' + num.value.replace(/\s/g, '').slice(-4);
+      store.set({ name, email, diet, joinedAt: Date.now() });
+      BFC.notify({ icon: 'users', title: 'Welcome to the club, ' + firstName(name) + '!', text: 'Your Baking for a Cause membership is active.', href: 'profile.html' });
+      if (guestNote) guestNote.hidden = true;
     }
+    const payEl = $('#s-pay');
+    if (payEl) payEl.textContent = paid ? (method === 'apple' ? 'Apple Pay' : 'Card ending in ' + num.value.replace(/\s/g, '').slice(-4)) : 'Free for club members';
+    const amountRow = $('#s-amount-row');
+    if (amountRow) amountRow.hidden = !paid;
     $('#s-first').textContent = firstName(name);
     $('#s-name').textContent = name;
     $('#s-email').textContent = email;
     const inline = $('#s-email-inline'); if (inline) inline.textContent = email;
     if ($('#s-diet')) $('#s-diet').textContent = diet || 'None provided';
-    if (flow !== 'membership' && window.BFC && window.BFC.signups) window.BFC.signups.add(form.dataset.signup || flow);
+    if (flow !== 'membership') {
+      BFC.signups.add(signupId || flow); /* also adds a notification; guests see the device-storage note on the success screen */
+    }
     if (flow === 'apply') {
       $('#s-avail').textContent = val('#f-avail');
       $('#s-exp').textContent = val('#f-exp') || 'None provided';
@@ -152,9 +213,18 @@
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     if (!validate()) return;
-    if (flow === 'membership' && step === 1) return goto(2);
+    if (paid && step === 1) return goto(2);
     finish();
   });
+  /* Event registration: members skip payment, so it is a single "Register" step. */
+  if (flow === 'event') {
+    if (paid) { $('#fee-note').hidden = false; goto(1); }
+    else {
+      $('#nav-next').hidden = true;
+      $('#btn-back').hidden = true;
+      $('#form-nav').classList.add('form-nav--single');
+    }
+  }
   const back = $('#btn-back');
   if (back) back.addEventListener('click', () => { if (step === 1) { const exit = $('.exit-action'); location.href = exit ? exit.href : 'registration.html'; } else goto(step - 1); });
 })();

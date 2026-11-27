@@ -747,3 +747,245 @@ img { display: block; max-width: 100%; }
 .search__filter[aria-expanded="true"], .search__filter.is-active { background: var(--color-accent-soft); }
 .btn.is-done { background: #c4bdb5; color: #fff; box-shadow: none; cursor: not-allowed; pointer-events: none; }
 .post .dev-note { margin-top: -4px; }
+
+/* 17. Recipe extras: dietary filter, header actions, no-photo, photo drag, unit picker, owner actions */
+.filters:has(.filter--full) { flex-wrap: wrap; row-gap: 10px; }
+.filter--full { flex-basis: 100%; }
+.recipe-actions { display: flex; gap: 10px; }
+.icon-btn--header { width: 40px; height: 40px; font-size: 17px; }
+.icon-btn--header.icon-btn--sm { font-size: 15px; }
+.no-photo { width: 100%; height: 100%; display: grid; place-items: center; padding: 12px; background: var(--color-accent-soft); font-size: 13px; font-weight: 600; color: var(--color-muted); text-align: center; }
+.photo-grid__item { touch-action: none; cursor: grab; user-select: none; -webkit-user-select: none; }
+.photo-grid__item.is-dragging { cursor: grabbing; opacity: 0.75; box-shadow: 0 0 0 2px var(--color-accent), 0 8px 18px rgba(73, 48, 33, 0.16); }
+.unit { width: 66px; }
+.mini--unit { width: 100%; display: flex; align-items: center; font-size: 13px; text-align: left; }
+.unit .unit__value { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.entry-labels span:nth-child(2) { width: 66px; }
+.unit .dropdown__list { right: auto; min-width: 96px; max-height: 232px; overflow-y: auto; }
+.btn-soft { display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+.btn-soft .icon { font-size: 14px; }
+.recipe-card .thread__actions { margin-top: 4px; }
+.profile-card__avatar--initials { font-family: var(--font-serif); font-size: 28px; }
+
+/* 18. App behaviour: toasts, notification dot, user content, activity ----------------------------- */
+.toast-stack { position: absolute; left: 16px; right: 16px; bottom: 112px; z-index: 40; display: flex; flex-direction: column; gap: 8px; pointer-events: none; }
+.toast { pointer-events: auto; display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px; background: var(--color-ink); color: #fff; font-size: 12px; line-height: 1.45; box-shadow: 0 10px 24px rgba(53, 40, 32, 0.25); }
+.toast__text { flex: 1; min-width: 0; }
+.toast__action { flex: none; padding: 6px 10px; border-radius: var(--radius-pill); background: rgba(255, 255, 255, 0.14); color: #ffd9c9; font-size: 12px; font-weight: 700; }
+.circle-btn.has-unread { position: relative; }
+.circle-btn.has-unread::after { content: ""; position: absolute; top: 5px; right: 6px; width: 8px; height: 8px; border-radius: 50%; background: var(--color-accent); box-shadow: 0 0 0 2px var(--color-accent-soft); }
+.circle-btn.has-unread[aria-expanded="true"]::after { display: none; }
+.notice-list { max-height: min(460px, 60vh); overflow-y: auto; }
+a.notice { color: inherit; }
+a.notice:hover { background: var(--color-tint); }
+.notice__body > span { display: block; }
+.notice__meta { display: flex !important; }
+.notice-empty { padding: 24px 18px; text-align: center; font-size: 13px; color: var(--color-muted); background: var(--color-surface); }
+.recipe-card__photo { position: relative; }
+.recipe-card__badge { position: absolute; left: 12px; top: 12px; padding: 6px 10px; border-radius: var(--radius-pill); background: rgba(255, 253, 245, 0.92); font-size: 9px; font-weight: 700; color: var(--color-accent); }
+.photo-strip { display: flex; gap: 8px; overflow-x: auto; }
+.photo-strip img { flex: none; width: 88px; height: 88px; object-fit: cover; border-radius: var(--radius-field); }
+.recipe-byline { margin-top: -14px; font-size: 12px; color: var(--color-muted); }
+.empty-block { display: flex; flex-direction: column; gap: 14px; padding-top: 24px; }
+.thread__mine { margin-left: auto; font-size: 8px; font-weight: 700; color: var(--color-accent); }
+.answers { display: flex; flex-direction: column; gap: 16px; }
+.answer-block { display: flex; flex-direction: column; gap: 10px; }
+.answer--accepted { box-shadow: inset 0 0 0 1.5px var(--color-accent); }
+.answer__delete { margin-right: auto; font-size: 11px; font-weight: 600; color: var(--color-error); }
+.replies { display: flex; flex-direction: column; gap: 8px; }
+.replies:empty { display: none; }
+.reply { display: flex; gap: 8px; padding-left: 6px; }
+.reply__icon { flex: none; padding-top: 6px; font-size: 14px; color: var(--color-muted); }
+.reply__body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px; padding: 10px 12px; border-radius: var(--radius-field); background: var(--color-surface); box-shadow: inset 0 0 0 1px var(--color-line); }
+.reply__body .answer__text { color: var(--color-ink); }
+.banner--success { font-weight: 600; color: var(--color-accent); }
+.note--guest { background: var(--color-tint); box-shadow: inset 0 0 0 1px var(--color-line); }
+.note--guest a { color: var(--color-accent); font-weight: 600; text-decoration: underline; }
+.activity-card { display: flex; flex-direction: column; gap: 12px; padding: 18px; }
+.activity-rows { display: flex; flex-direction: column; }
+.activity-row { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--color-line); font-size: 13px; color: var(--color-ink); }
+.activity-row:last-child { border-bottom: 0; }
+.activity-row__icon { flex: none; width: 32px; height: 32px; display: grid; place-items: center; border-radius: 50%; background: var(--color-accent-soft); color: var(--color-accent); font-size: 15px; }
+.activity-row__label { flex: 1; }
+.activity-row__value { font-weight: 700; color: var(--color-accent); }
+.activity-row > .icon:last-child { font-size: 14px; color: var(--color-muted); }
+.activity-list { display: flex; flex-direction: column; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.activity-item { display: flex; align-items: flex-start; gap: 12px; font-size: 12px; line-height: 1.5; color: var(--color-muted); }
+.activity-item strong { color: var(--color-ink); font-weight: 600; }
+button:disabled, input:disabled, textarea:disabled { cursor: not-allowed; }
+.btn:disabled { opacity: 0.5; }
+
+/* 19. Motion --------------------------------------------------------------------------------------- */
+@keyframes bfc-page-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes bfc-fade-up { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes bfc-pop-in { from { opacity: 0; transform: scale(0.94); } to { opacity: 1; transform: none; } }
+@keyframes bfc-drop-in { from { opacity: 0; transform: translateY(-6px) scale(0.98); } to { opacity: 1; transform: none; } }
+@keyframes bfc-slide-down { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
+@keyframes bfc-toast-in { from { opacity: 0; transform: translateY(14px) scale(0.98); } to { opacity: 1; transform: none; } }
+@keyframes bfc-toast-out { to { opacity: 0; transform: translateY(10px) scale(0.98); } }
+@keyframes bfc-heart { 0% { transform: scale(1); } 35% { transform: scale(1.28); } 70% { transform: scale(0.94); } 100% { transform: scale(1); } }
+@keyframes bfc-emblem { 0% { opacity: 0; transform: scale(0.6); } 60% { opacity: 1; transform: scale(1.08); } 100% { transform: scale(1); } }
+
+/* Pages: content fades in; header and tab bar stay put like an app shell. Leaving fades out. */
+.screen-body, .login { animation: bfc-page-in 0.32s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+html.is-leaving .screen-body, html.is-leaving .login { opacity: 0; transform: translateY(-4px); transition: opacity 0.14s ease, transform 0.14s ease; }
+
+/* Lists: cards rise in, a little staggered. */
+.recipe-list > .recipe-card, #posts > .post, .threads > .thread, .events > .event-card, .answers > .answer-block, .activity-card {
+  animation: bfc-fade-up 0.4s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.recipe-list > :nth-child(2), #posts > :nth-child(2), .threads > :nth-child(1), .events > :nth-child(3), .answers > :nth-child(1) { animation-delay: 0.04s; }
+.recipe-list > :nth-child(3), #posts > :nth-child(3), .threads > :nth-child(2), .events > :nth-child(4), .answers > :nth-child(2) { animation-delay: 0.09s; }
+.recipe-list > :nth-child(4), #posts > :nth-child(4), .threads > :nth-child(3), .events > :nth-child(5), .answers > :nth-child(3) { animation-delay: 0.14s; }
+.recipe-list > :nth-child(n+5), .threads > :nth-child(n+4), .answers > :nth-child(n+4) { animation-delay: 0.18s; }
+
+/* Popups, menus and dropdowns grow from where they were opened. */
+.popup:not([hidden]) { animation: bfc-drop-in 0.2s cubic-bezier(0.2, 0.7, 0.2, 1); transform-origin: calc(100% - 66px) 0; }
+.fab-menu:not([hidden]) { animation: bfc-pop-in 0.2s cubic-bezier(0.2, 0.7, 0.2, 1); transform-origin: calc(100% - 26px) 100%; }
+.dropdown__list:not([hidden]) { animation: bfc-drop-in 0.16s ease-out; transform-origin: top center; }
+.fab .icon { transition: transform 0.2s ease; }
+.fab[aria-expanded="true"] .icon--close { animation: bfc-pop-in 0.2s ease; }
+
+/* Steps, notes, banners and success screens */
+.step:not([hidden]) { animation: bfc-fade-up 0.28s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.note:not([hidden]), .banner:not([hidden]), .dev-note:not([hidden]), .login__msg:not([hidden]) { animation: bfc-slide-down 0.22s ease-out; }
+.banner.is-entering { animation: bfc-slide-down 0.22s ease-out; }
+.success__emblem { animation: bfc-emblem 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) 0.05s both; }
+.toast { animation: bfc-toast-in 0.24s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.toast.is-leaving { animation: bfc-toast-out 0.2s ease forwards; }
+.photo-grid__item { animation: bfc-pop-in 0.2s ease-out; transition: box-shadow 0.15s ease, opacity 0.15s ease; }
+.entry, .step-entry { animation: bfc-fade-up 0.22s ease-out; }
+.reply { animation: bfc-fade-up 0.22s ease-out; }
+
+/* Press feedback and hover states */
+.btn, .btn-soft, .btn-ios, .icon-btn, .circle-btn, .chip, .nav__tab, .fab, .thumb, .add-row, .fab-menu__option, .dropdown__option, .exit-action, .back-link, .edit-link, .select, .input--select, .toast__action, .banner__undo, .search__filter, .activity-row {
+  transition: transform 0.12s ease, background-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease, opacity 0.2s ease, filter 0.2s ease;
+}
+.btn:active, .btn-soft:active, .btn-ios:active, .icon-btn:active, .circle-btn:active, .chip:active, .fab:active, .add-row:active, .fab-menu__option:active, .thumb:active { transform: scale(0.96); }
+.nav__tab:active { transform: scale(0.94); }
+@media (hover: hover) {
+  .btn:hover:not(:disabled):not(.is-done), .btn-ios:hover { filter: brightness(1.08); }
+  .btn--secondary:hover, .add-row:hover, .icon-btn:hover, .chip:hover, .select:hover, .input--select:hover { box-shadow: inset 0 0 0 1px var(--color-accent); }
+  .fab-menu__option:hover { background: rgba(255, 255, 255, 0.1); }
+  .activity-row:hover .activity-row__label { color: var(--color-accent); }
+}
+.recipe-card, .post, .event-card, .thread { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.is-popping { animation: bfc-heart 0.34s ease; }
+.is-removing { overflow: hidden; opacity: 0; transform: scale(0.97); margin-top: -12px; transition: height 0.24s ease, opacity 0.2s ease, transform 0.2s ease, margin 0.24s ease; }
+.progress__bar { transition: width 0.35s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.input, .mini { transition: box-shadow 0.15s ease; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+.fab { transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.2s ease, background-color 0.2s ease; }
+.fab.is-hidden { transform: translateY(24px) scale(0.6); opacity: 0; pointer-events: none; }
+
+/* 20. Round 4: delete confirmation, photo viewer, filter bar, like counts, votes, answered ------------ */
+@keyframes bfc-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes bfc-fade-out { to { opacity: 0; } }
+.btn--danger { background: var(--color-error); color: #fff; }
+.btn--danger .icon, .modal__actions .btn .icon { font-size: 16px; }
+.link-btn { font: inherit; font-weight: 600; color: var(--color-accent); text-decoration: underline; text-underline-offset: 2px; }
+
+/* Delete confirmation: centred dialog over the whole screen */
+.modal { position: absolute; inset: 0; z-index: 70; display: grid; place-items: center; padding: 24px; background: rgba(53, 40, 32, 0.46); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); animation: bfc-fade-in 0.18s ease; }
+.modal.is-closing { animation: bfc-fade-out 0.18s ease forwards; }
+.modal__card { width: 100%; max-width: 330px; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 28px 22px 22px; border-radius: 24px; background: var(--color-surface); box-shadow: 0 24px 48px rgba(53, 40, 32, 0.28); text-align: center; animation: bfc-pop-in 0.22s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.modal.is-closing .modal__card { animation: bfc-fade-out 0.18s ease forwards; }
+.modal__card.is-swapping > * { animation: bfc-fade-up 0.26s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.modal__emblem { width: 58px; height: 58px; display: grid; place-items: center; margin-bottom: 4px; border-radius: 50%; background: var(--color-accent-soft); color: var(--color-accent); font-size: 26px; animation: bfc-emblem 0.4s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.modal__emblem--danger { background: #fce8e4; color: var(--color-error); }
+.modal__title { margin: 0; font-family: var(--font-serif); font-size: 21px; font-weight: 500; line-height: 1.25; }
+.modal__text { margin: 0; font-size: 13px; line-height: 1.55; color: var(--color-muted); overflow-wrap: anywhere; }
+.modal__text strong { color: var(--color-ink); font-variant-numeric: tabular-nums; }
+.modal__actions { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+.modal__actions .btn { gap: 6px; padding: 0 12px; }
+.modal__timer { position: relative; width: 64px; height: 64px; margin-bottom: 4px; }
+.modal__timer svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.modal__timer circle { fill: none; stroke-width: 5; }
+.modal__timer-track { stroke: var(--color-accent-soft); }
+.modal__timer-ring { stroke: var(--color-accent); stroke-linecap: round; }
+.modal__timer-num { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--font-serif); font-size: 22px; font-weight: 600; color: var(--color-accent); font-variant-numeric: tabular-nums; }
+
+/* Full-screen photo viewer */
+.lightbox { position: absolute; inset: 0; z-index: 80; display: flex; flex-direction: column; background: #17110d; color: #fff; animation: bfc-fade-in 0.2s ease; }
+.lightbox.is-closing { animation: bfc-fade-out 0.18s ease forwards; }
+.lightbox__bar { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 52px 16px 8px; }
+@media (max-width: 430px) { .lightbox__bar { padding-top: max(env(safe-area-inset-top), 16px); } }
+.lightbox__count { font-size: 13px; font-weight: 600; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; }
+.lightbox__close { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; background: rgba(255, 255, 255, 0.14); color: #fff; font-size: 20px; }
+.lightbox__stage { position: relative; flex: 1; min-height: 0; overflow: hidden; touch-action: none; cursor: grab; }
+.lightbox__stage:active { cursor: grabbing; }
+.lightbox__track { display: flex; height: 100%; will-change: transform; }
+.lightbox__slide { flex: 0 0 100%; min-width: 0; height: 100%; margin: 0; display: grid; place-items: center; padding: 12px; }
+.lightbox__slide img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 14px; user-select: none; -webkit-user-select: none; -webkit-user-drag: none; animation: bfc-pop-in 0.24s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.lightbox__nav { position: absolute; top: 50%; z-index: 1; width: 44px; height: 44px; margin-top: -2px; display: grid; place-items: center; border-radius: 50%; background: rgba(255, 255, 255, 0.16); color: #fff; font-size: 22px; transition: opacity 0.2s ease, background-color 0.2s ease, transform 0.12s ease; }
+.lightbox__nav--prev { left: 10px; }
+.lightbox__nav--next { right: 10px; }
+.lightbox__nav:disabled { opacity: 0.25; cursor: default; }
+.lightbox__nav:not(:disabled):active { transform: scale(0.92); }
+@media (hover: hover) { .lightbox__nav:not(:disabled):hover, .lightbox__close:hover { background: rgba(255, 255, 255, 0.26); } }
+.lightbox__dots { flex: none; display: flex; justify-content: center; gap: 8px; padding: 14px 0 30px; }
+.lightbox__dot { width: 8px; height: 8px; padding: 0; border-radius: 4px; background: rgba(255, 255, 255, 0.35); transition: width 0.2s ease, background-color 0.2s ease; }
+.lightbox__dot[aria-current="true"] { width: 22px; background: #fff; }
+.recipe-view .recipe-overview__photo img, .recipe-view .photo-strip img { cursor: zoom-in; transition: transform 0.2s ease, filter 0.2s ease; }
+.recipe-view .recipe-overview__photo img:focus-visible, .recipe-view .photo-strip img:focus-visible { outline: 2px solid var(--color-accent); outline-offset: -2px; }
+@media (hover: hover) { .recipe-view .photo-strip img:hover { filter: brightness(1.06); } }
+.recipe-view .photo-strip { margin-top: -6px; }
+.recipe-view .photo-strip img { width: 72px; height: 72px; }
+
+/* Filter bar: what is active + Clear filters */
+.filter-status { display: flex; align-items: center; gap: 12px; padding: 10px 10px 10px 14px; border-radius: var(--radius-field); background: var(--color-accent-soft); }
+.filter-status[hidden] { display: none; }
+.filter-status:not([hidden]) { animation: bfc-slide-down 0.2s ease-out; }
+.filter-status__summary { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; font-size: 11px; color: var(--color-muted); }
+.filter-status__summary strong { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; font-weight: 600; color: var(--color-ink); }
+.filter-status__clear { flex: none; display: inline-flex; align-items: center; gap: 6px; padding: 8px 12px; border-radius: var(--radius-pill); background: var(--color-surface); box-shadow: inset 0 0 0 1px var(--color-line); font-size: 12px; font-weight: 600; color: var(--color-accent); transition: box-shadow 0.2s ease, transform 0.12s ease; }
+.filter-status__clear .icon { font-size: 14px; }
+.filter-status__clear:active { transform: scale(0.96); }
+@media (hover: hover) { .filter-status__clear:hover { box-shadow: inset 0 0 0 1px var(--color-accent); } }
+
+/* Like counts on announcements, author line on recipe cards */
+.like-group { display: inline-flex; align-items: center; gap: 6px; }
+.like-count { min-width: 14px; font-size: 13px; font-weight: 600; color: var(--color-ink); font-variant-numeric: tabular-nums; }
+.recipe-card__by { margin: -4px 0 0; font-size: 11px; color: var(--color-muted); }
+
+/* Forums: votes on replies, delete buttons, answered flag, owner controls */
+.votes { display: inline-flex; align-items: center; gap: 4px; }
+.answer__delete { display: inline-flex; align-items: center; gap: 4px; }
+.answer__delete .icon { font-size: 12px; }
+.answer__reactions--reply { margin-top: -2px; }
+.reply .thumb .icon { font-size: 19px; }
+.discussion__owner { display: flex; flex-direction: column; gap: 10px; }
+.discussion__owner:empty { display: none; }
+.answered-flag { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; margin: 0; padding: 7px 12px; border-radius: var(--radius-pill); background: var(--color-accent-soft); font-size: 12px; font-weight: 600; color: var(--color-accent); }
+.answered-flag .icon { font-size: 15px; }
+.btn-soft--icon { flex: 0 0 44px; padding: 0; }
+.btn-soft.is-on { background: var(--color-surface); box-shadow: inset 0 0 0 1px var(--color-line); }
+
+/* 21. Announcement like count (same as recipe cards) + forum sort/show */
+.post__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.post__title-block { flex: 1; min-width: 0; }
+.post__head .rating { flex: none; padding-top: 6px; }
+
+/* 22. Update posts + forum like buttons */
+.post__kicker { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--color-muted); }
+.post__emblem { width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; background: var(--color-accent-soft); color: var(--color-accent); font-size: 15px; }
+.badge--soft { background: var(--color-accent-soft); }
+.post__date { margin-left: auto; }
+.post--update .post__title { font-size: 22px; }
+.btn--soft-apply { background: var(--color-accent-soft); color: var(--color-accent); box-shadow: none; font-size: 13px; }
+.thread__like { display: inline-flex; align-items: center; gap: 4px; margin: -6px -8px -6px 0; padding: 6px 8px; border-radius: var(--radius-pill); font-size: 10px; color: var(--color-muted); transition: background-color 0.2s ease, color 0.2s ease, transform 0.12s ease; }
+.thread__like .icon { font-size: 13px; color: var(--color-accent); }
+.thread__like[aria-pressed="true"] { background: var(--color-accent-soft); color: var(--color-accent); font-weight: 600; }
+.thread__like[aria-pressed="true"] .icon { fill: var(--color-accent); }
+.thread__like:active { transform: scale(0.94); }
+@media (hover: hover) { .thread__like:hover { background: var(--color-accent-soft); } }
+.discussion__stats { justify-content: flex-start; font-size: 12px; }
+.discussion__stats .icon { font-size: 14px; }
+.discussion__stats .thread__like { margin: -6px 0; font-size: 12px; }
+
+/* 23. Forum like button in the recipe-card format */
+.thread__cta { display: flex; align-items: center; gap: 10px; }
+.thread__cta .btn--cta { flex: 1; width: auto; }

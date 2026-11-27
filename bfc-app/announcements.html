@@ -49,24 +49,29 @@
       </div>
     </div>
 
+    <div class="filter-status" data-filter-status hidden><span class="filter-status__summary" data-filter-summary></span><button type="button" class="filter-status__clear" data-filter-clear><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.531 3H3a1 1 0 0 0-.742 1.67l7.225 7.989A2 2 0 0 1 10 14v6a1 1 0 0 0 .553.895l2 1A1 1 0 0 0 14 21v-7a2 2 0 0 1 .517-1.341l.427-.473" /><path d="m16.5 3.5 5 5" /><path d="m21.5 3.5-5 5" /></svg>Clear filters</button></div>
+
     <div class="stack stack--12" id="posts">
       <div class="section-heading" aria-label="Pinned post"><svg class="icon icon--filled" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 17v5" /><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z" /></svg></div>
 
-      <article class="card post" data-filter-item data-type="pinned event">
+      <article class="card post" data-filter-item data-type="pinned event" data-like-id="post-hiring">
         <div class="post__media">
           <img src="assets/photos/announcement-holiday-market.png" alt="Student bakers handing out treats at a holiday market">
           <div class="post__badges"><span class="badge">PINNED</span><span class="badge">EVENT</span></div>
         </div>
         <div class="post__body">
-          <div>
-            <h2 class="post__title">Hiring student bakers for the holiday market</h2>
-            <p class="post__meta">Mon Oct. 19 to Mon Nov. 2 · Hiring · 2–4 hours/week</p>
+          <div class="post__head">
+            <div class="post__title-block">
+              <h2 class="post__title">Hiring student bakers for the holiday market</h2>
+              <p class="post__meta">Mon Nov. 30 to Fri Dec. 18 · Hiring · 2–4 hours/week</p>
+            </div>
+            <span class="rating"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" /></svg><span data-like-count>24</span></span>
           </div>
           <div class="tags"><span class="tag">Social</span><span class="tag">Fundraiser</span><span class="tag">Club Life</span></div>
           <p class="post__text">Help us prep seasonal treats, manage sales, and keep the club booth running smoothly. No experience needed—training is included.</p>
           <div class="post__actions">
             <div class="post__reactions">
-              <button class="icon-btn" type="button" aria-label="Like" aria-pressed="false" data-like><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" /></svg></button>
+              <button class="icon-btn" type="button" aria-label="Like this post" aria-pressed="false" data-like><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" /></svg></button>
               <button class="icon-btn" type="button" aria-label="Comments" data-comment><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" /></svg></button>
             </div>
             <a class="btn btn--apply" href="apply-hiring.html?from=announcements" data-signup="holiday-hiring" data-done-label="Applied">Apply</a>
@@ -75,21 +80,24 @@
         </div>
       </article>
 
-      <article class="card post" data-filter-item data-type="event">
+      <article class="card post" data-filter-item data-type="event" data-like-id="post-cinnamon">
         <div class="post__media">
           <img src="assets/photos/announcement-cinnamon-roll.png" alt="" onerror="this.remove()">
           <div class="post__badges"><span class="badge">EVENT</span></div>
         </div>
         <div class="post__body">
-          <div>
-            <h2 class="post__title">Cinnamon Roll Social</h2>
-            <p class="post__meta">Thu Oct. 22, 6–8 pm · Maple Hall Kitchen</p>
+          <div class="post__head">
+            <div class="post__title-block">
+              <h2 class="post__title">Cinnamon Roll Social</h2>
+              <p class="post__meta">Thu Dec. 3, 6–8 pm · Maple Hall Kitchen</p>
+            </div>
+            <span class="rating"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" /></svg><span data-like-count>41</span></span>
           </div>
           <div class="tags"><span class="tag">Social</span><span class="tag">Fundraiser</span></div>
           <p class="post__text">Relax and learn how to bake delicious cinnamon rolls with your friends! No experience needed—training is included.</p>
           <div class="post__actions">
             <div class="post__reactions">
-              <button class="icon-btn" type="button" aria-label="Like" aria-pressed="false" data-like><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" /></svg></button>
+              <button class="icon-btn" type="button" aria-label="Like this post" aria-pressed="false" data-like><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" /></svg></button>
               <button class="icon-btn" type="button" aria-label="Comments" data-comment><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" /></svg></button>
             </div>
             <a class="btn btn--apply" href="event-registration.html?from=announcements" data-signup="cinnamon-social" data-done-label="Registered">Register</a>
@@ -97,7 +105,98 @@
           <p class="dev-note" hidden>Under development!</p>
         </div>
       </article>
-      <p class="empty-state" data-filter-empty hidden>No announcements match your search.</p>
+      <article class="card post post--update" data-filter-item data-type="update" data-like-id="update-allergens">
+        <div class="post__body">
+          <div class="post__kicker"><span class="post__emblem"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><line x1="12" x2="12" y1="8" y2="12" /><line x1="12" x2="12.01" y1="16" y2="16" /></svg></span><span class="badge badge--soft">UPDATE</span><span class="post__date">Thu Nov. 26 · Today</span></div>
+          <div class="post__head">
+            <div class="post__title-block">
+              <h2 class="post__title">Allergen labels now required at bake sales</h2>
+              <p class="post__meta">Posted Thu Nov. 26 by the BfC executive team</p>
+            </div>
+            <span class="rating"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" /></svg><span data-like-count>11</span></span>
+          </div>
+          <div class="tags"><span class="tag">Food Safety</span><span class="tag">Club Life</span></div>
+          <p class="post__text">Starting with the holiday market, every item we sell needs a label listing the top allergens. Use the “Dietary &amp; Allergens” section of any club recipe, and grab printed labels from the kitchen drawer.</p>
+          <div class="post__actions">
+            <div class="post__reactions">
+              <button class="icon-btn" type="button" aria-label="Like this post" aria-pressed="false" data-like><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" /></svg></button>
+              <button class="icon-btn" type="button" aria-label="Comments" data-comment><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" /></svg></button>
+            </div>
+            <a class="btn btn--apply btn--soft-apply" href="recipes.html">Browse recipes</a>
+          </div>
+          <p class="dev-note" hidden>Under development!</p>
+        </div>
+      </article>
+
+      <article class="card post post--update" data-filter-item data-type="update" data-like-id="update-bake-sale">
+        <div class="post__body">
+          <div class="post__kicker"><span class="post__emblem"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="m9 12 2 2 4-4" /></svg></span><span class="badge badge--soft">UPDATE</span><span class="post__date">Tue Nov. 24 · 2 days ago</span></div>
+          <div class="post__head">
+            <div class="post__title-block">
+              <h2 class="post__title">Our fall bake sale raised $1,240!</h2>
+              <p class="post__meta">Posted Tue Nov. 24 by the BfC executive team</p>
+            </div>
+            <span class="rating"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" /></svg><span data-like-count>37</span></span>
+          </div>
+          <div class="tags"><span class="tag">Fundraiser</span><span class="tag">Thank You</span></div>
+          <p class="post__text">Thank you to the 38 members and guests who baked, sold and bought. Every dollar goes to the Campus Food Bank to help stock their shelves for the winter term.</p>
+          <div class="post__actions">
+            <div class="post__reactions">
+              <button class="icon-btn" type="button" aria-label="Like this post" aria-pressed="false" data-like><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" /></svg></button>
+              <button class="icon-btn" type="button" aria-label="Comments" data-comment><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" /></svg></button>
+            </div>
+            
+          </div>
+          <p class="dev-note" hidden>Under development!</p>
+        </div>
+      </article>
+
+      <article class="card post post--update" data-filter-item data-type="update" data-like-id="update-kitchen">
+        <div class="post__body">
+          <div class="post__kicker"><span class="post__emblem"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v3" /><path d="M16 2v3" /><rect x="3" y="3" width="18" height="18" rx="2" /><path d="M3 9h18" /><path d="M8 13h.01" /><path d="M12 13h.01" /><path d="M16 13h.01" /><path d="M8 17h.01" /><path d="M12 17h.01" /><path d="M16 17h.01" /></svg></span><span class="badge badge--soft">UPDATE</span><span class="post__date">Mon Nov. 23 · 3 days ago</span></div>
+          <div class="post__head">
+            <div class="post__title-block">
+              <h2 class="post__title">Maple Hall Kitchen closed over winter break</h2>
+              <p class="post__meta">Posted Mon Nov. 23 by the BfC executive team</p>
+            </div>
+            <span class="rating"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" /></svg><span data-like-count>6</span></span>
+          </div>
+          <div class="tags"><span class="tag">Schedule</span></div>
+          <p class="post__text">The kitchen is closed Sat Dec. 19 to Mon Jan. 4. Please finish club bakes and clean out the shared fridge by Fri Dec. 18. Socials start again the week of Jan. 11.</p>
+          <div class="post__actions">
+            <div class="post__reactions">
+              <button class="icon-btn" type="button" aria-label="Like this post" aria-pressed="false" data-like><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" /></svg></button>
+              <button class="icon-btn" type="button" aria-label="Comments" data-comment><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" /></svg></button>
+            </div>
+            
+          </div>
+          <p class="dev-note" hidden>Under development!</p>
+        </div>
+      </article>
+
+      <article class="card post post--update" data-filter-item data-type="update" data-like-id="update-recipes">
+        <div class="post__body">
+          <div class="post__kicker"><span class="post__emblem"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v16" /><path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /></svg></span><span class="badge badge--soft">UPDATE</span><span class="post__date">Fri Nov. 20 · 6 days ago</span></div>
+          <div class="post__head">
+            <div class="post__title-block">
+              <h2 class="post__title">24 new recipes in the club collection</h2>
+              <p class="post__meta">Posted Fri Nov. 20 by the BfC executive team</p>
+            </div>
+            <span class="rating"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" /></svg><span data-like-count>19</span></span>
+          </div>
+          <div class="tags"><span class="tag">Recipes</span><span class="tag">Club Life</span></div>
+          <p class="post__text">From no-knead bread to French macarons, members added two dozen tested recipes, with vegan, gluten-free and dairy-free options. Save your favourites to bake later.</p>
+          <div class="post__actions">
+            <div class="post__reactions">
+              <button class="icon-btn" type="button" aria-label="Like this post" aria-pressed="false" data-like><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5" /></svg></button>
+              <button class="icon-btn" type="button" aria-label="Comments" data-comment><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" /></svg></button>
+            </div>
+            <a class="btn btn--apply btn--soft-apply" href="recipes.html">See new recipes</a>
+          </div>
+          <p class="dev-note" hidden>Under development!</p>
+        </div>
+      </article>
+      <p class="empty-state" data-filter-empty hidden>No announcements match your search. <button type="button" class="link-btn" data-filter-clear>Clear filters</button></p>
     </div>
   </main>
 
@@ -132,13 +231,13 @@
         <div class="notice__body">
           <div class="notice__meta"><span>Today · 9:00 am</span><span class="notice__new">NEW</span></div>
           <p class="notice__title">Your next bake is coming up</p>
-          <p class="notice__text">You’re registered for Holiday Cookie Decorating.<br>Oct 29 · Thu, 5–7 pm<br>Student Union Kitchen</p>
+          <p class="notice__text">You’re registered for the Cinnamon Roll Social.<br>Dec 3 · Thu, 6–8 pm<br>Maple Hall Kitchen</p>
         </div>
       </article>
       <article class="notice">
         <span class="notice__emblem"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v16" /><path d="M20.001 19A2 2 0 0022 17V5a2 2 0 00-1.999-2L16 3.002A5 5 0 0012 5a5 5 0 00-4-2H4a2 2 0 00-2 2v12a2 2 0 001.999 2H8a5 5 0 014 2 5 5 0 014-2z" /></svg></span>
         <div class="notice__body">
-          <div class="notice__meta"><span>Oct 20 · Read</span></div>
+          <div class="notice__meta"><span>Nov 20 · Read</span></div>
           <p class="notice__title">New Recipe Posted: Brown Butter Cookies</p>
           <p class="notice__text">Chewy cookies, sea salt, simple ingredients. Find the recipe in Recipes.</p>
         </div>
@@ -146,6 +245,8 @@
     </div>
   </section>
 </div>
+<script src="js/icons.js"></script>
+<script src="js/recipes-data.js"></script>
 <script src="js/app.js"></script>
 <script src="js/forms.js"></script>
 <script src="js/forums.js"></script>
